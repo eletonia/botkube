@@ -269,7 +269,7 @@ func (r *KubernetesSource) IsAllowed(resourceType, namespace string, eventType E
 type Recommendations struct {
 	Ingress IngressRecommendations `yaml:"ingress"`
 	Pod     PodRecommendations     `yaml:"pod"`
-	Node    NodeRecommendations    `yaml:node`
+	Node    NodeRecommendations    `yaml:"node"`
 }
 
 // PodRecommendations contains configuration for pods recommendations.
