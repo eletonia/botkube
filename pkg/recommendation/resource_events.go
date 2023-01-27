@@ -9,6 +9,7 @@ import (
 const (
 	podsResourceType    = "v1/pods"
 	ingressResourceType = "networking.k8s.io/v1/ingresses"
+	nodesResourceType   = "v1/nodes"
 )
 
 // ResourceEventsForConfig returns the resource event map for a given source recommendations config.
@@ -21,6 +22,9 @@ func ResourceEventsForConfig(recCfg config.Recommendations) map[string]config.Ev
 
 	if ptr.IsTrue(recCfg.Pod.NoLatestImageTag) || ptr.IsTrue(recCfg.Pod.LabelsSet) {
 		resTypes[podsResourceType] = config.CreateEvent
+	}
+	if ptr.IsTrue(recCfg.Node.Cordoned) {
+		resTypes[nodesResourceType] = config.CreateEvent
 	}
 
 	return resTypes
