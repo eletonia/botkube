@@ -62,6 +62,9 @@ func (f *Factory) mergeConfig(sources map[string]config.Sources, mapKeyOrder []s
 		if sourceCfg.Ingress.TLSSecretValid != nil {
 			mergedCfg.Ingress.TLSSecretValid = sourceCfg.Ingress.TLSSecretValid
 		}
+		if sourceCfg.Node.Cordoned != nil {
+			mergedCfg.Node.Cordoned = sourceCfg.Node.Cordoned
+		}
 	}
 
 	return mergedCfg
@@ -83,6 +86,9 @@ func (f *Factory) recommendationsForConfig(cfg config.Recommendations) []Recomme
 
 	if ptr.IsTrue(cfg.Ingress.TLSSecretValid) {
 		recommendations = append(recommendations, NewIngressTLSSecretValid(f.dynamicCli))
+	}
+	if ptr.IsTrue(cfg.Node.Cordoned) {
+		recommendations = append(recommendations, NewCordoned(f.dynamicCli))
 	}
 
 	return recommendations
