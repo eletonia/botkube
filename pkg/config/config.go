@@ -269,6 +269,7 @@ func (r *KubernetesSource) IsAllowed(resourceType, namespace string, eventType E
 type Recommendations struct {
 	Ingress IngressRecommendations `yaml:"ingress"`
 	Pod     PodRecommendations     `yaml:"pod"`
+	Node    NodeRecommendations    `yaml:node`
 }
 
 // PodRecommendations contains configuration for pods recommendations.
@@ -287,6 +288,12 @@ type IngressRecommendations struct {
 
 	// TLSSecretValid notifies about Ingress resources with invalid TLS secret reference.
 	TLSSecretValid *bool `yaml:"tlsSecretValid,omitempty"`
+}
+
+// NodeRecommendations contains configuration for node recommendations.
+type NodeRecommendations struct {
+	// Cordoned notifies about Node resources that are unschedulable.
+	Cordoned *bool `yaml:"backendServiceValid,omitempty"`
 }
 
 // PluginsExecutors contains plugins executors configuration parameters defined in groups.
