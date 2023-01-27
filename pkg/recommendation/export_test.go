@@ -11,3 +11,7 @@ func PodResourceType() string {
 func IngressResourceType() string {
 	return ingressResourceType
 }
+
+func NodeResourceType() string {
+	return nodeResourceType
+}
