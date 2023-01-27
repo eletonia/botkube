@@ -26,6 +26,9 @@ func TestFactory_NewForSources(t *testing.T) {
 						BackendServiceValid: ptr.Bool(false),
 						// keep TLSSecretValid not specified
 					},
+					Node: config.NodeRecommendations{
+						Cordoned: ptr.Bool(false),
+					},
 				},
 			},
 		},
@@ -40,6 +43,9 @@ func TestFactory_NewForSources(t *testing.T) {
 						BackendServiceValid: ptr.Bool(false),
 						TLSSecretValid:      ptr.Bool(true),
 					},
+					Node: config.NodeRecommendations{
+						Cordoned: ptr.Bool(true), //override `false` from `first`
+					},
 				},
 			},
 		},
@@ -53,6 +59,9 @@ func TestFactory_NewForSources(t *testing.T) {
 						BackendServiceValid: ptr.Bool(true), // override `false` from `first`
 						// keep TLSSecretValid not specified
 					},
+					Node: config.NodeRecommendations{
+						Cordoned: ptr.Bool(false), // override `true` from `second`
+					}
 				},
 			},
 		},
@@ -63,6 +72,7 @@ func TestFactory_NewForSources(t *testing.T) {
 		"PodLabelsSet",
 		"IngressBackendServiceValid",
 		"IngressTLSSecretValid",
+		"Cordoned",
 	}
 	expectedRecCfg := config.Recommendations{
 		Pod: config.PodRecommendations{
@@ -73,6 +83,9 @@ func TestFactory_NewForSources(t *testing.T) {
 			BackendServiceValid: ptr.Bool(true),
 			TLSSecretValid:      ptr.Bool(true),
 		},
+		Node: config.NodeRecommendations{
+			Cordoned: ptr.Bool(false),
+		}
 	}
 
 	factory := recommendation.NewFactory(loggerx.NewNoop(), nil)
