@@ -293,7 +293,7 @@ type IngressRecommendations struct {
 // NodeRecommendations contains configuration for node recommendations.
 type NodeRecommendations struct {
 	// Cordoned notifies about Node resources that are unschedulable.
-	Cordoned *bool `yaml:"backendServiceValid,omitempty"`
+	Cordoned *bool `yaml:"cordoned,omitempty"`
 }
 
 // PluginsExecutors contains plugins executors configuration parameters defined in groups.

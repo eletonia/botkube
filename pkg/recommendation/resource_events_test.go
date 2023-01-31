@@ -63,6 +63,17 @@ func TestResourceEventsForConfig(t *testing.T) {
 			},
 		},
 		{
+			Name: "Node Cordoned",
+			RecCfg: config.Recommendations{
+				Node: config.NodeRecommendations{
+					Cordoned: ptr.Bool(true),
+				},
+			},
+			Expected: map[string]config.EventType{
+				recommendation.NodeResourceType(): config.CreateEvent,
+			},
+		},
+		{
 			Name: "All",
 			RecCfg: config.Recommendations{
 				Pod: config.PodRecommendations{
@@ -75,6 +86,7 @@ func TestResourceEventsForConfig(t *testing.T) {
 			Expected: map[string]config.EventType{
 				recommendation.PodResourceType():     config.CreateEvent,
 				recommendation.IngressResourceType(): config.CreateEvent,
+				recommendation.NodeResourceType():    config.CreateEvent,
 			},
 		},
 	}
@@ -220,6 +232,9 @@ func fixFullRecommendationConfig() config.Recommendations {
 		Ingress: config.IngressRecommendations{
 			BackendServiceValid: ptr.Bool(true),
 			TLSSecretValid:      ptr.Bool(true),
+		},
+		Node: config.NodeRecommendations{
+			Cordoned: ptr.Bool(true),
 		},
 	}
 }
