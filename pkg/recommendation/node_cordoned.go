@@ -52,5 +52,5 @@ func (f NodeCordoned) Do(_ context.Context, event event.Event) (Result, error) {
 
 // Name returns the recommendation name.
 func (f *NodeCordoned) Name() string {
-	return NodeCordonedName
+	return nodeCordonedName
 }

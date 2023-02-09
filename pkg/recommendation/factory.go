@@ -88,7 +88,7 @@ func (f *Factory) recommendationsForConfig(cfg config.Recommendations) []Recomme
 		recommendations = append(recommendations, NewIngressTLSSecretValid(f.dynamicCli))
 	}
 	if ptr.IsTrue(cfg.Node.Cordoned) {
-		recommendations = append(recommendations, NewCordoned(f.dynamicCli))
+		recommendations = append(recommendations, NewNodeCordoned())
 	}
 
 	return recommendations
