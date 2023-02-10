@@ -13,5 +13,5 @@ func IngressResourceType() string {
 }
 
 func NodeResourceType() string {
-	return nodeResourceType
+	return nodesResourceType
 }

@@ -40,7 +40,7 @@ func (f NodeCordoned) Do(_ context.Context, event event.Event) (Result, error) {
 	}
 
 	// Check if node is cordoned
-	if node.Spec.Unschedulable == false {
+	if !node.Spec.Unschedulable {
 		return Result{}, nil
 	} else {
 		recommendationMsg := fmt.Sprintf("Node '%s' was cordoned. Check the health of this node.", node.Name)

@@ -61,7 +61,7 @@ func TestFactory_NewForSources(t *testing.T) {
 					},
 					Node: config.NodeRecommendations{
 						Cordoned: ptr.Bool(false), // override `true` from `second`
-					}
+					},
 				},
 			},
 		},
@@ -85,7 +85,7 @@ func TestFactory_NewForSources(t *testing.T) {
 		},
 		Node: config.NodeRecommendations{
 			Cordoned: ptr.Bool(false),
-		}
+		},
 	}
 
 	factory := recommendation.NewFactory(loggerx.NewNoop(), nil)
